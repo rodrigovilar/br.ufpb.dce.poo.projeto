@@ -20,19 +20,19 @@ public class ControleEstoqueFacade {
 	}
 	
 	public void cadastrarProduto(Produto produto) {
-		
+		controladorEstoque.cadastrarProduto(produto);
 	}
 	
 	public void descadastrarProduto(int codigo) {
-		
+		controladorEstoque.descadastrarProduto(codigo);
 	}
 	
 	public Produto buscarProduto(int codigo) {
-		return null;
+		return controladorEstoque.buscarProduto(codigo);
 	}
 	
 	public List<Produto> listarProdutos() {
-		return null;
+		return controladorEstoque.listarProdutos();
 	}
 	
 	public int getQuantidadeProduto(int codigo) {
