@@ -1,4 +1,4 @@
-package br.ufpb.dce.poo.controleestoque;
+package br.ufpb.dce.poo.controleestoque.facade;
 
 import java.util.List;
 
