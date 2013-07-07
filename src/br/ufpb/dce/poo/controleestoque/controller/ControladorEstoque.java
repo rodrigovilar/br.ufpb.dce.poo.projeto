@@ -1,95 +1,108 @@
-package br.ufpb.dce.poo.controleestoque.facade;
+package br.ufpb.dce.poo.controleestoque.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import br.ufpb.dce.poo.controleestoque.controller.ControladorEstoque;
-import br.ufpb.dce.poo.controleestoque.exception.FacadeException;
 import br.ufpb.dce.poo.controleestoque.exception.ProdutoException;
 import br.ufpb.dce.poo.controleestoque.model.Produto;
 
-public class ControleEstoqueFacade {
-	private static ControleEstoqueFacade controleEstoqueFacade;
-	private ControladorEstoque controladorEstoque;
-	
-	private ControleEstoqueFacade() {
-		controladorEstoque = new ControladorEstoque();
+public class ControladorEstoque {
+	private List<Produto> produtos;
+
+	public ControladorEstoque() {
+		produtos = new ArrayList<Produto>();
 	}
-	
-	public static ControleEstoqueFacade getInstance() {
-		if(controleEstoqueFacade == null)
-			controleEstoqueFacade = new ControleEstoqueFacade();
-		return controleEstoqueFacade;
-	}
-	
-	public void cadastrarProduto(Produto produto) throws FacadeException {
+
+	public void cadastrarProduto(Produto produto) throws ProdutoException {
 		try {
-			controladorEstoque.cadastrarProduto(produto);
+			if (buscarProduto(produto.getCodigo()) == null)
+				produtos.add(produto);
 		} catch (ProdutoException pe) {
-			throw new FacadeException(pe);
+			throw new ProdutoException(
+					"Já existe um produto cadastrado com o código informado!");
 		}
 	}
-	
-	public void removerProduto(int codigo) throws FacadeException {
+
+	public void descadastrarProduto(int codigo) throws ProdutoException {
+		Produto produto = buscarProduto(codigo);
+
+		if (produto != null)
+			produtos.remove(produto);
+
+		throw new ProdutoException(
+				"Não foi encontrado produto com o código informado!");
+	}
+
+	public Produto buscarProduto(int codigo) throws ProdutoException {
+		for (Produto produto : produtos)
+			if (produto.getCodigo() == codigo)
+				return produto;
+
+		throw new ProdutoException(
+				"Não foi encontrado produto com o código informado!");
+	}
+
+	public List<Produto> listarProdutos() throws ProdutoException {
+		if (produtos.size() > 0)
+			return produtos;
+
+		throw new ProdutoException("Não existe nenhum produto cadastrado!");
+	}
+
+	public int getQuantidadeProduto(int codigo) throws ProdutoException {
 		try {
-			controladorEstoque.descadastrarProduto(codigo);
+			return buscarProduto(codigo).getQuantidade();
 		} catch (ProdutoException pe) {
-			throw new FacadeException(pe);
+			throw pe;
 		}
 	}
-	
-	public Produto buscarProduto(int codigo) throws FacadeException {
+
+	public void reporProduto(int codigo, int quantidade)
+			throws ProdutoException {
 		try {
-			return controladorEstoque.buscarProduto(codigo);
+			Produto produto = buscarProduto(codigo);
+			if (quantidade < 0)
+				throw new ProdutoException("Quantidade menor que 1!");
+			produto.setQuantidade(produto.getQuantidade() + quantidade);
 		} catch (ProdutoException pe) {
-			throw new FacadeException(pe);
+			throw pe;
 		}
 	}
-	
-	public List<Produto> listarProdutos() throws FacadeException {
+
+	public void retirarProduto(int codigo, int quantidade)
+			throws ProdutoException {
 		try {
-			return controladorEstoque.listarProdutos();
+			Produto produto = buscarProduto(codigo);
+			if (quantidade < 0)
+				throw new ProdutoException("Quantidade menor que 1!");
+			else if (quantidade <= produto.getQuantidade())
+				produto.setQuantidade(produto.getQuantidade() - quantidade);
+			else
+				throw new ProdutoException(
+						"Quantidade a ser retira é maior que a quantidade disponível!");
 		} catch (ProdutoException pe) {
-			throw new FacadeException(pe);
+			throw pe;
 		}
 	}
-	
-	public int getQuantidadeProduto(int codigo) throws FacadeException {
-		try {
-			return controladorEstoque.getQuantidadeProduto(codigo);
-		} catch (ProdutoException pe) {
-			throw new FacadeException(pe);
-		}
+
+	public float getValorTotalEmEstoque() throws ProdutoException {
+		if (produtos.size() == 0)
+			throw new ProdutoException("Não existe nenhum produto cadastrado!");
+		
+		float total = 0;
+		
+		for (Produto produto : produtos)
+			total += produto.getValor();
+
+		return total;
 	}
-	
-	public void reporProduto(int codigo, int quantidade) throws FacadeException {
+
+	public float getValorTotalProduto(int codigo) throws ProdutoException {
 		try {
-			controladorEstoque.reporProduto(codigo, quantidade);
+			Produto produto = buscarProduto(codigo);
+			return produto.getValor() * produto.getQuantidade();
 		} catch (ProdutoException pe) {
-			throw new FacadeException(pe);
-		}
-	}
-	
-	public void retirarProduto(int codigo, int quantidade) throws FacadeException {
-		try {
-			controladorEstoque.retirarProduto(codigo, quantidade);
-		} catch (ProdutoException pe) {
-			throw new FacadeException(pe);
-		}
-	}
-	
-	public float getValorTotalEmEstoque() throws FacadeException {
-		try {
-			return controladorEstoque.getValorTotalEmEstoque();
-		} catch (ProdutoException pe) {
-			throw new FacadeException(pe);
-		}
-	}
-	
-	public float getValorTotalProduto(int codigo) throws FacadeException {
-		try {
-			return controladorEstoque.getValorTotalProduto(codigo);
-		} catch (ProdutoException pe) {
-			throw new FacadeException(pe);
+			throw pe;
 		}
 	}
 }
