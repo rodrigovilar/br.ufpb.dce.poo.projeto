@@ -46,9 +46,14 @@ public class ControladorEstoque {
 	}
 
 	/**
+	 * Se houver algum produto cadastrado com o codigo informado no parâmetro,
+	 * remove este produto da lista.
 	 * 
 	 * @param codigo
+	 *            Código do produto a ser removido.
 	 * @throws ProdutoException
+	 *             Exceção lançada caso não haja nenhum produto cadastrado com o
+	 *             código informado.
 	 */
 	public void descadastrarProduto(int codigo) throws ProdutoException {
 		Produto produto = buscarProduto(codigo);
@@ -60,6 +65,16 @@ public class ControladorEstoque {
 				"Não foi encontrado produto com o código informado!");
 	}
 
+	/**
+	 * Procura um produto na lista de produtos cadastrados.
+	 * 
+	 * @param codigo
+	 *            Código do produto a ser pesquisado.
+	 * @return O produto que possui o código informado.
+	 * @throws ProdutoException
+	 *             Exceção lançada caso não haja nenhum produto cadastrado com o
+	 *             código informado.
+	 */
 	public Produto buscarProduto(int codigo) throws ProdutoException {
 		for (Produto produto : produtos)
 			if (produto.getCodigo() == codigo)
@@ -69,6 +84,13 @@ public class ControladorEstoque {
 				"Não foi encontrado produto com o código informado!");
 	}
 
+	/**
+	 * Método para recuperar todos os produtos cadastrados no sistema.
+	 * 
+	 * @return A lista de produtos cadastrados.
+	 * @throws ProdutoException
+	 *             Exceção lançado caso não haja nenhum produto cadastrado.
+	 */
 	public List<Produto> listarProdutos() throws ProdutoException {
 		if (produtos.size() > 0)
 			return produtos;
@@ -76,6 +98,18 @@ public class ControladorEstoque {
 		throw new ProdutoException("Não existe nenhum produto cadastrado!");
 	}
 
+	/**
+	 * Método para obter a quantidade de produtos disponíveis no estoque de um
+	 * determinado produto
+	 * 
+	 * @param codigo
+	 *            Código do produto o qual deseja saber sua quantidade
+	 *            disponível
+	 * @return A quantidade disponível no estoque.
+	 * @throws ProdutoException
+	 *             Exceção lançada se não foi encontrado nenhum produto com o
+	 *             código informado.
+	 */
 	public int getQuantidadeProduto(int codigo) throws ProdutoException {
 		try {
 			return buscarProduto(codigo).getQuantidade();
@@ -84,6 +118,18 @@ public class ControladorEstoque {
 		}
 	}
 
+	/**
+	 * Adiciona uma quantia no estoque de um produto que já está cadastrado.
+	 * 
+	 * @param codigo
+	 *            Código do produto.
+	 * @param quantidade
+	 *            Quantia a ser adicionada.
+	 * @throws ProdutoException
+	 *             Exceção pode ser lançada em dois casos:
+	 * 		1) se a quantia a ser inserida for menor do que 1;
+	 * 		2) Se não existe nenhum produto cadastrado com o código informado.
+	 */
 	public void reporProduto(int codigo, int quantidade)
 			throws ProdutoException {
 		try {
@@ -96,6 +142,19 @@ public class ControladorEstoque {
 		}
 	}
 
+	/**
+	 * Retira uma quantia de um determinado produto do estoque.
+	 * 
+	 * @param codigo
+	 *            Código do produto.
+	 * @param quantidade
+	 *            Quantia a ser retirada.
+	 * @throws ProdutoException
+	 *             Exceção pode ser lançada em três casos:
+	 * 		1) se a quantia a ser retirada for menor do que 1;
+	 * 		2) Se a quantia a ser retirada for maior que a quantia disponível no estoque;
+	 * 		3) Se não existe nenhum produto cadastrado com o código informado.
+	 */
 	public void retirarProduto(int codigo, int quantidade)
 			throws ProdutoException {
 		try {
@@ -112,6 +171,14 @@ public class ControladorEstoque {
 		}
 	}
 
+	/**
+	 * Soma o valor da multiplicação da quantidade em estoque pelo do valor de
+	 * todos os produtos cadastrados.
+	 * 
+	 * @return Quantia total em estoque.
+	 * @throws ProdutoException
+	 *             Exceção lançada caso não exista nenhum produto cadastrado.
+	 */
 	public float getValorTotalEmEstoque() throws ProdutoException {
 		if (produtos.size() == 0)
 			throw new ProdutoException("Não existe nenhum produto cadastrado!");
@@ -124,6 +191,17 @@ public class ControladorEstoque {
 		return total;
 	}
 
+	/**
+	 * Multiplica o valor de um determinado produto pela sua quantidade
+	 * disponível no estoque.
+	 * 
+	 * @param codigo
+	 *            Código do produto.
+	 * @return O valor em estoque do produto com código informado.
+	 * @throws ProdutoException
+	 *             Exceção lançada se não foi encontrado nenhum produto com o
+	 *             código informado.
+	 */
 	public float getValorTotalProduto(int codigo) throws ProdutoException {
 		try {
 			Produto produto = buscarProduto(codigo);
