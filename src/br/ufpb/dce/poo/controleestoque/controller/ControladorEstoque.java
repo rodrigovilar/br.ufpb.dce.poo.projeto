@@ -7,17 +7,34 @@ import br.ufpb.dce.poo.controleestoque.exception.ProdutoException;
 import br.ufpb.dce.poo.controleestoque.model.Produto;
 
 /**
+ * Esta classe é responsável por gerenciar os produtos do estoque. Suas
+ * funcionalidades são: Cadastrar um novo produto, buscar produto, remover
+ * produto, entre outas.
  * 
  * @author Nayanne Soares e Gabriela Pimenta
- *
+ * 
  */
 public class ControladorEstoque {
+	/** A lista de produtos cadastrados no sistema */
 	private List<Produto> produtos;
 
+	/**
+	 * Constrói o ControladorEstoque inicializando a lista de produtos.
+	 */
 	public ControladorEstoque() {
 		produtos = new ArrayList<Produto>();
 	}
 
+	/**
+	 * Se não existe nenhum produto cadastrado com os dados do produto a ser
+	 * inserido, insere o novo produto na lista.
+	 * 
+	 * @param produto
+	 *            Produto a ser cadastrado
+	 * @throws ProdutoException
+	 *             Exceção lançado caso haja algum produto cadastrado com os
+	 *             dados informados.
+	 */
 	public void cadastrarProduto(Produto produto) throws ProdutoException {
 		try {
 			if (buscarProduto(produto.getCodigo()) == null)
@@ -28,6 +45,11 @@ public class ControladorEstoque {
 		}
 	}
 
+	/**
+	 * 
+	 * @param codigo
+	 * @throws ProdutoException
+	 */
 	public void descadastrarProduto(int codigo) throws ProdutoException {
 		Produto produto = buscarProduto(codigo);
 
