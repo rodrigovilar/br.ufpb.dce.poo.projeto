@@ -6,6 +6,11 @@ import java.util.List;
 import br.ufpb.dce.poo.controleestoque.exception.ProdutoException;
 import br.ufpb.dce.poo.controleestoque.model.Produto;
 
+/**
+ * 
+ * @author Nayanne Soares e Gabriela Pimenta
+ *
+ */
 public class ControladorEstoque {
 	private List<Produto> produtos;
 

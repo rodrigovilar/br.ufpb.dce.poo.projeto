@@ -7,10 +7,10 @@ package br.ufpb.dce.poo.controleestoque.model;
  * 
  */
 public class Produto {
-	/** Propriedade código. */
+	/** Propriedade codigo. */
 	private int codigo;
 
-	/** Propriedade descrição. */
+	/** Propriedade descricao. */
 	private String descricao;
 
 	/** Propriedade quantidade. */
@@ -20,23 +20,23 @@ public class Produto {
 	private float valor;
 
 	/**
-	 * Constrói um Produto com o código informado no parâmetro, com uma
-	 * descrição padrão, quantidade 0 e valor 0.
+	 * Constroi um Produto com o codigo informado no parametro, com uma
+	 * descricao padrao, quantidade 0 e valor 0.
 	 * 
 	 * @param codigo
-	 *            Código do produto a ser criado
+	 *            Codigo do produto a ser criado
 	 */
 	public Produto(int codigo) {
-		this(codigo, "Produto sem descrição.", 0, 0f);
+		this(codigo, "Produto sem descricao.", 0, 0f);
 	}
 
 	/**
-	 * Constrói um Produto com os dados recebidos no parâmetro.
+	 * Constroi um Produto com os dados recebidos no parametro.
 	 * 
 	 * @param codigo
-	 *            Código do produto a ser criado.
+	 *            Codigo do produto a ser criado.
 	 * @param descricao
-	 *            Descrição do produto a ser criado.
+	 *            Descricao do produto a ser criado.
 	 * @param quantidade
 	 *            Quantidade em estoque do produto a ser criado.
 	 * @param valor
@@ -50,38 +50,38 @@ public class Produto {
 	}
 
 	/**
-	 * Recupera a propriedade código.
+	 * Recupera a propriedade codigo.
 	 * 
-	 * @return Código do Produto.
+	 * @return Codigo do Produto.
 	 */
 	public int getCodigo() {
 		return codigo;
 	}
 
 	/**
-	 * Altera a propriedade código.
+	 * Altera a propriedade codigo.
 	 * 
 	 * @param codigo
-	 *            Novo código.
+	 *            Novo codigo.
 	 */
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
 	/**
-	 * Recupera a propriedade descrição.
+	 * Recupera a propriedade descricao.
 	 * 
-	 * @return Descrição do Produto.
+	 * @return Descricao do Produto.
 	 */
 	public String getDescricao() {
 		return descricao;
 	}
 
 	/**
-	 * Altera a propriedade descrição.
+	 * Altera a propriedade descricao.
 	 * 
 	 * @param descricao
-	 *            Nova descrição.
+	 *            Nova descricao.
 	 */
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
