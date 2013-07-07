@@ -14,8 +14,6 @@ import br.ufpb.dce.poo.controleestoque.model.Produto;
  *
  */
 public class ControleEstoqueFacade {
-	/**  */
-	private static ControleEstoqueFacade controleEstoqueFacade;
 	
 	/**  */
 	private ControladorEstoque controladorEstoque;
@@ -23,18 +21,8 @@ public class ControleEstoqueFacade {
 	/**
 	 * 
 	 */
-	private ControleEstoqueFacade() {
+	public ControleEstoqueFacade() {
 		controladorEstoque = new ControladorEstoque();
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public static ControleEstoqueFacade getInstance() {
-		if(controleEstoqueFacade == null)
-			controleEstoqueFacade = new ControleEstoqueFacade();
-		return controleEstoqueFacade;
 	}
 	
 	/**
