@@ -45,19 +45,64 @@ public class ControladorEstoque {
 	public List<Produto> listarProdutos() throws ProdutoException {
 		if (produtos.size() > 0)
 			return produtos;
-		
+
 		throw new ProdutoException("Não existe nenhum produto cadastrado!");
 	}
 
-	public int getQuantidadeProduto(int codigo) throws ProdutoException{
-		Produto produto;
-		
+	public int getQuantidadeProduto(int codigo) throws ProdutoException {
 		try {
-			produto = buscarProduto(codigo);
+			return buscarProduto(codigo).getQuantidade();
 		} catch (ProdutoException pe) {
 			throw pe;
 		}
+	}
 
-		return produto.getQuantidade();
+	public void reporProduto(int codigo, int quantidade)
+			throws ProdutoException {
+		try {
+			Produto produto = buscarProduto(codigo);
+			if (quantidade < 0)
+				throw new ProdutoException("Quantidade menor que 1!");
+			produto.setQuantidade(produto.getQuantidade() + quantidade);
+		} catch (ProdutoException pe) {
+			throw pe;
+		}
+	}
+
+	public void retirarProduto(int codigo, int quantidade)
+			throws ProdutoException {
+		try {
+			Produto produto = buscarProduto(codigo);
+			if (quantidade < 0)
+				throw new ProdutoException("Quantidade menor que 1!");
+			else if (quantidade <= produto.getQuantidade())
+				produto.setQuantidade(produto.getQuantidade() - quantidade);
+			else
+				throw new ProdutoException(
+						"Quantidade a ser retira é maior que a quantidade disponível!");
+		} catch (ProdutoException pe) {
+			throw pe;
+		}
+	}
+
+	public float getValorTotalEmEstoque() throws ProdutoException {
+		if (produtos.size() == 0)
+			throw new ProdutoException("Não existe nenhum produto cadastrado!");
+		
+		float total = 0;
+		
+		for (Produto produto : produtos)
+			total += produto.getValor();
+
+		return total;
+	}
+
+	public float getValorTotalProduto(int codigo) throws ProdutoException {
+		try {
+			Produto produto = buscarProduto(codigo);
+			return produto.getValor() * produto.getQuantidade();
+		} catch (ProdutoException pe) {
+			throw pe;
+		}
 	}
 }
