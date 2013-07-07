@@ -37,11 +37,11 @@ public class ControladorEstoque {
 	 */
 	public void cadastrarProduto(Produto produto) throws ProdutoException {
 		try {
-			if (buscarProduto(produto.getCodigo()) == null)
-				produtos.add(produto);
-		} catch (ProdutoException pe) {
+			buscarProduto(produto.getCodigo());
 			throw new ProdutoException(
 					"Já existe um produto cadastrado com o código informado!");
+		} catch (ProdutoException pe) {
+			produtos.add(produto);
 		}
 	}
 
@@ -56,13 +56,12 @@ public class ControladorEstoque {
 	 *             código informado.
 	 */
 	public void descadastrarProduto(int codigo) throws ProdutoException {
-		Produto produto = buscarProduto(codigo);
-
-		if (produto != null)
-			produtos.remove(produto);
-
-		throw new ProdutoException(
-				"Não foi encontrado produto com o código informado!");
+		try {
+			produtos.remove(buscarProduto(codigo));
+		} catch (ProdutoException pe) {
+			throw new ProdutoException(
+					"Não foi encontrado produto com o código informado!");
+		}
 	}
 
 	/**
@@ -126,9 +125,9 @@ public class ControladorEstoque {
 	 * @param quantidade
 	 *            Quantia a ser adicionada.
 	 * @throws ProdutoException
-	 *             Exceção pode ser lançada em dois casos:
-	 * 		1) se a quantia a ser inserida for menor do que 1;
-	 * 		2) Se não existe nenhum produto cadastrado com o código informado.
+	 *             Exceção pode ser lançada em dois casos: 1) se a quantia a ser
+	 *             inserida for menor do que 1; 2) Se não existe nenhum produto
+	 *             cadastrado com o código informado.
 	 */
 	public void reporProduto(int codigo, int quantidade)
 			throws ProdutoException {
@@ -150,10 +149,10 @@ public class ControladorEstoque {
 	 * @param quantidade
 	 *            Quantia a ser retirada.
 	 * @throws ProdutoException
-	 *             Exceção pode ser lançada em três casos:
-	 * 		1) se a quantia a ser retirada for menor do que 1;
-	 * 		2) Se a quantia a ser retirada for maior que a quantia disponível no estoque;
-	 * 		3) Se não existe nenhum produto cadastrado com o código informado.
+	 *             Exceção pode ser lançada em três casos: 1) se a quantia a ser
+	 *             retirada for menor do que 1; 2) Se a quantia a ser retirada
+	 *             for maior que a quantia disponível no estoque; 3) Se não
+	 *             existe nenhum produto cadastrado com o código informado.
 	 */
 	public void retirarProduto(int codigo, int quantidade)
 			throws ProdutoException {

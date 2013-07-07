@@ -55,7 +55,7 @@ public class ControleEstoqueFacade {
 	 * @param codigo
 	 * @throws FacadeException
 	 */
-	public void removerProduto(int codigo) throws FacadeException {
+	public void descadastrarProduto(int codigo) throws FacadeException {
 		try {
 			controladorEstoque.descadastrarProduto(codigo);
 		} catch (ProdutoException pe) {
