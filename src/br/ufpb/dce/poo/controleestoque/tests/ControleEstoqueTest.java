@@ -27,8 +27,8 @@ public class ControleEstoqueTest {
 				3,
 				"Smart TV 3D LED 47\" LG 47LA6200 FULL HD 3 HDMI 3 USB Wi-fi 120Hz + 4 Óculos 3D",
 				1, 2969.10f);
-		
-		facade = ControleEstoqueFacade.getInstance();
+
+		facade = new ControleEstoqueFacade();
 		facade.cadastrarProduto(p1);
 		facade.cadastrarProduto(p2);
 		facade.cadastrarProduto(p3);
@@ -44,38 +44,48 @@ public class ControleEstoqueTest {
 		Assert.assertEquals(facade.listarProdutos().size(), 4);
 	}
 
-	@Test
-	public void testBuscarProduto() {
-
+	@Test(expected = FacadeException.class)
+	public void testDescadastrarProduto() throws FacadeException {
+		facade.descadastrarProduto(4);
+		Assert.assertEquals("", facade.listarProdutos().size(), 6);
 	}
 
 	@Test
-	public void testListarProdutos() {
-
+	public void testBuscarProduto() throws FacadeException {
+		Assert.assertEquals(899.00f, facade.buscarProduto(1).getValor());
 	}
 
 	@Test
-	public void testGetQuantidadeProduto() {
-
+	public void testListarProdutos() throws FacadeException {
+		Assert.assertEquals(3, facade.listarProdutos().size());
 	}
 
 	@Test
-	public void testReporProduto() {
-
+	public void testGetQuantidadeProduto() throws FacadeException {
+		Assert.assertEquals(10, facade.buscarProduto(1).getQuantidade());
 	}
 
 	@Test
-	public void testRetirarProduto() {
-
+	public void testReporProduto() throws FacadeException {
+		Assert.assertEquals(10, facade.buscarProduto(1).getQuantidade());
+		facade.reporProduto(1, 5);
+		Assert.assertEquals(15, facade.buscarProduto(1).getQuantidade());
 	}
 
 	@Test
-	public void testValorTotalEmEstoque() {
-
+	public void testRetirarProduto() throws FacadeException {
+		Assert.assertEquals(10, facade.buscarProduto(1).getQuantidade());
+		facade.retirarProduto(1, 5);
+		Assert.assertEquals(5, facade.buscarProduto(1).getQuantidade());
 	}
 
 	@Test
-	public void testValorTotalProduto() {
+	public void testValorTotalEmEstoque() throws FacadeException {
+		Assert.assertEquals(25454.1f, facade.getValorTotalEmEstoque());
+	}
 
+	@Test
+	public void testValorTotalProduto() throws FacadeException {
+		Assert.assertEquals(8990f, facade.getValorTotalProduto(1));
 	}
 }

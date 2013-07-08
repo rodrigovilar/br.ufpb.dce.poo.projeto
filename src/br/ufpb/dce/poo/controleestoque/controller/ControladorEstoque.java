@@ -185,7 +185,7 @@ public class ControladorEstoque {
 		float total = 0;
 
 		for (Produto produto : produtos)
-			total += produto.getValor();
+			total += produto.getValor() * produto.getQuantidade();
 
 		return total;
 	}
