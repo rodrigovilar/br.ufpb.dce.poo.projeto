@@ -36,13 +36,17 @@ public class ControladorEstoque {
 	 *             dados informados.
 	 */
 	public void cadastrarProduto(Produto produto) throws ProdutoException {
+		Produto prod = null;
+		
 		try {
-			buscarProduto(produto.getCodigo());
-			throw new ProdutoException(
-					"Já existe um produto cadastrado com o código informado!");
+			prod = buscarProduto(produto.getCodigo());
 		} catch (ProdutoException pe) {
 			produtos.add(produto);
 		}
+		
+		if (prod != null)
+			throw new ProdutoException(
+					"Já existe um produto cadastrado com o código informado!");
 	}
 
 	/**
@@ -56,12 +60,16 @@ public class ControladorEstoque {
 	 *             código informado.
 	 */
 	public void descadastrarProduto(int codigo) throws ProdutoException {
+		Produto prod = null;
+		
 		try {
-			produtos.remove(buscarProduto(codigo));
+			prod = buscarProduto(codigo);
 		} catch (ProdutoException pe) {
-			throw new ProdutoException(
-					"Não foi encontrado produto com o código informado!");
+			throw pe;
 		}
+		
+		if(prod != null)
+			produtos.remove(prod);
 	}
 
 	/**
@@ -110,11 +118,15 @@ public class ControladorEstoque {
 	 *             código informado.
 	 */
 	public int getQuantidadeProduto(int codigo) throws ProdutoException {
+		Produto prod = null;
+		
 		try {
-			return buscarProduto(codigo).getQuantidade();
+			prod = buscarProduto(codigo);
 		} catch (ProdutoException pe) {
 			throw pe;
 		}
+		
+		return prod.getQuantidade();
 	}
 
 	/**
