@@ -62,6 +62,9 @@ public class ControladorEstoque {
 	public void descadastrarProduto(int codigo) throws ProdutoException {
 		Produto prod = null;
 		
+		if(codigo < 0)
+			throw new ProdutoException("Código inválido. Valor informado é menor que 0.");
+		
 		try {
 			prod = buscarProduto(codigo);
 		} catch (ProdutoException pe) {
