@@ -168,22 +168,25 @@ public class ControleEstoqueTest {
 		Assert.assertEquals(25653.1f, facade.getValorTotalEmEstoque());
 
 		Produto p5 = new Produto(
-				4,
+				5,
 				"Smartphone Samsung Galaxy Ace Preto, Desbloqueado Vivo, GSM, Android, Câmera de 5MP, Tela Touchscreen 3.5\", 3G, Wi-Fi, Bluetooth e Cartão de Memória 2GB",
 				3, 499.00f);
 		facade.cadastrarProduto(p5);
-		Assert.assertEquals(26951.1f, facade.getValorTotalEmEstoque());
+		Assert.assertEquals(27150.1f, facade.getValorTotalEmEstoque());
 
 		facade.descadastrarProduto(1);
-		Assert.assertEquals(17961.1f, facade.getValorTotalEmEstoque());
+		Assert.assertEquals(18160.1f, facade.getValorTotalEmEstoque());
 
 		facade.descadastrarProduto(2);
-		Assert.assertEquals(4466.1f, facade.getValorTotalEmEstoque());
+		Assert.assertEquals(4665.1f, facade.getValorTotalEmEstoque());
 
 		facade.descadastrarProduto(3);
-		Assert.assertEquals(1497.0f, facade.getValorTotalEmEstoque());
+		Assert.assertEquals(1696.0f, facade.getValorTotalEmEstoque());
 
 		facade.descadastrarProduto(4);
+		Assert.assertEquals(1497f, facade.getValorTotalEmEstoque());
+		
+		facade.descadastrarProduto(5);
 		Assert.assertEquals(0f, facade.getValorTotalEmEstoque());
 	}
 
@@ -192,14 +195,17 @@ public class ControleEstoqueTest {
 		Assert.assertEquals(8990f, facade.getValorTotalProduto(1));
 
 		Produto p5 = new Produto(
-				4,
+				5,
 				"Smartphone Samsung Galaxy Ace Preto, Desbloqueado Vivo, GSM, Android, Câmera de 5MP, Tela Touchscreen 3.5\", 3G, Wi-Fi, Bluetooth e Cartão de Memória 2GB",
 				3, 499.00f);
 		facade.cadastrarProduto(p5);
-		Assert.assertEquals(1497.00f, facade.getValorTotalProduto(4));
+		Assert.assertEquals(1497.00f, facade.getValorTotalProduto(5));
 
+		Assert.assertEquals(8990.0f, facade.getValorTotalProduto(1));
 		Assert.assertEquals(13495.0f, facade.getValorTotalProduto(2));
-
-		Assert.assertEquals(0, facade.getValorTotalProduto(5));
+		Assert.assertEquals(2969.1f, facade.getValorTotalProduto(3));
+		Assert.assertEquals(199.0f, facade.getValorTotalProduto(4));
+		
+		Assert.assertEquals(0, facade.getValorTotalProduto(6));
 	}
 }
