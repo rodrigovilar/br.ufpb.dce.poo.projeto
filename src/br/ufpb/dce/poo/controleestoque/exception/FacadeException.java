@@ -1,4 +1,4 @@
-package exception;
+package br.ufpb.dce.poo.controleestoque.exception;
 
 /**
  * ExceÁ„o lanÁada quando ocorre algum erro na fachada do sistema.
