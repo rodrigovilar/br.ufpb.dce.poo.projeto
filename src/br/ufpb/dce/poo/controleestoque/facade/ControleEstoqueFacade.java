@@ -2,10 +2,10 @@ package br.ufpb.dce.poo.controleestoque.facade;
 
 import java.util.List;
 
-import br.ufpb.dce.poo.controleestoque.controller.ControladorEstoque;
-import br.ufpb.dce.poo.controleestoque.exception.FacadeException;
-import br.ufpb.dce.poo.controleestoque.exception.ProdutoException;
-import br.ufpb.dce.poo.controleestoque.model.Produto;
+import controller.ControladorEstoque;
+import exception.FacadeException;
+import exception.ProdutoException;
+import model.Produto;
 
 /**
  * Fachada do Sistema.
@@ -14,22 +14,22 @@ import br.ufpb.dce.poo.controleestoque.model.Produto;
  *
  */
 public class ControleEstoqueFacade {
-	
+
 	/** objeto controladorEstoque. */
 	private ControladorEstoque controladorEstoque;
-	
+
 	/**
-	 * Construtor padrão da fachada que inicializa o objeto controladorEstoque.
+	 * Construtor padr„o da fachada que inicializa o objeto controladorEstoque.
 	 */
 	public ControleEstoqueFacade() {
 		controladorEstoque = new ControladorEstoque();
 	}
-	
+
 	/**
-	 * Chama o método do controladorEstoque para cadastrar um novo produto.
+	 * Chama o mÈtodo do controladorEstoque para cadastrar um novo produto.
 	 * 
 	 * @param produto Produto a ser adicionado.
-	 * @throws FacadeException Exceção lançada se ocorreu algum erro no controlador.
+	 * @throws FacadeException ExceÁ„o lanÁada se ocorreu algum erro no controlador.
 	 */
 	public void cadastrarProduto(Produto produto) throws FacadeException {
 		try {
@@ -38,26 +38,26 @@ public class ControleEstoqueFacade {
 			throw new FacadeException(pe);
 		}
 	}
-	
+
 	/**
-	 * Chama o método do controladorEstoque para descadastrar um produto.
+	 * Chama o mÈtodo do controladorEstoque para descadastrar um produto.
 	 * 
-	 * @param codigo Código do produto a ser descadastrado.
-	 * @throws FacadeException Exceção lançada se ocorreu algum erro no controlador.
+	 * @param codigo CÛdigo do produto a ser descadastrado.
+	 * @throws FacadeException ExceÁ„o lanÁada se ocorreu algum erro no controlador.
 	 */
-	public void descadastrarProduto(int codigo) throws FacadeException {
+	public void remover(int codigo) throws FacadeException {
 		try {
-			controladorEstoque.descadastrarProduto(codigo);
+			controladorEstoque.remover(codigo);
 		} catch (ProdutoException pe) {
 			throw new FacadeException(pe);
 		}
 	}
 	/**
-	 * Chama o método do controladorEstoque para buscar um produto.
+	 * Chama o mÈtodo do controladorEstoque para buscar um produto.
 	 * 
-	 * @param codigo Código do produto a ser procurado.
+	 * @param codigo CÛdigo do produto a ser procurado.
 	 * @return O produto encontrado pelo controlador.
-	 * @throws FacadeException Exceção lançada se ocorreu algum erro no controlador.
+	 * @throws FacadeException ExceÁ„o lanÁada se ocorreu algum erro no controlador.
 	 */
 	public Produto buscarProduto(int codigo) throws FacadeException {
 		try {
@@ -66,12 +66,12 @@ public class ControleEstoqueFacade {
 			throw new FacadeException(pe);
 		}
 	}
-	
+
 	/**
-	 * Chama o método do controladorEstoque para recuperar todos os produtos cadastrados.
+	 * Chama o mÈtodo do controladorEstoque para recuperar todos os produtos cadastrados.
 	 * 
 	 * @return A lista de produtos cadastradas no controlador.
-	 * @throws FacadeException Exceção lançada se ocorreu algum erro no controlador.
+	 * @throws FacadeException ExceÁ„o lanÁada se ocorreu algum erro no controlador.
 	 */
 	public List<Produto> listarProdutos() throws FacadeException {
 		try {
@@ -80,15 +80,15 @@ public class ControleEstoqueFacade {
 			throw new FacadeException(pe);
 		}
 	}
-	
+
 	/**
-	 * Chama o método do controladorEstoque para recuperar a quantidade em estoque de
+	 * Chama o mÈtodo do controladorEstoque para recuperar a quantidade em estoque de
 	 * um determinado produto.
 	 * 
-	 * @param codigo Código do produto o qual se deseja saber a quantidade disponível
+	 * @param codigo CÛdigo do produto o qual se deseja saber a quantidade disponÌvel
 	 * no estoque.
-	 * @return A quantidade disponível.
-	 * @throws FacadeException Exceção lançada se ocorreu algum erro no controlador.
+	 * @return A quantidade disponÌvel.
+	 * @throws FacadeException ExceÁ„o lanÁada se ocorreu algum erro no controlador.
 	 */
 	public int getQuantidadeProduto(int codigo) throws FacadeException {
 		try {
@@ -98,12 +98,12 @@ public class ControleEstoqueFacade {
 		}
 	}
 	/**
-	 * Chama o método do controladorEstoque para repor um certa quantia de um determinado
+	 * Chama o mÈtodo do controladorEstoque para repor um certa quantia de um determinado
 	 * produto no estoque.
 	 * 
-	 * @param codigo Código do produto o qual se deseja repor.
+	 * @param codigo CÛdigo do produto o qual se deseja repor.
 	 * @param quantidade Quantidade a ser acrescentada no estoque.
-	 * @throws FacadeException Exceção lançada se ocorreu algum erro no controlador.
+	 * @throws FacadeException ExceÁ„o lanÁada se ocorreu algum erro no controlador.
 	 */
 	public void reporProduto(int codigo, int quantidade) throws FacadeException {
 		try {
@@ -112,14 +112,14 @@ public class ControleEstoqueFacade {
 			throw new FacadeException(pe);
 		}
 	}
-	
+
 	/**
-	 * Chama o método do controladorEstoque para retirar uma determinada quantia do estoque
+	 * Chama o mÈtodo do controladorEstoque para retirar uma determinada quantia do estoque
 	 * de um determinado produto.
 	 * 
-	 * @param codigo Código do produto a ser retirado.
+	 * @param codigo CÛdigo do produto a ser retirado.
 	 * @param quantidade Quantidade que se deseja retirar.
-	 * @throws FacadeException Exceção lançada se ocorreu algum erro no controlador
+	 * @throws FacadeException ExceÁ„o lanÁada se ocorreu algum erro no controlador
 	 */
 	public void retirarProduto(int codigo, int quantidade) throws FacadeException {
 		try {
@@ -128,12 +128,12 @@ public class ControleEstoqueFacade {
 			throw new FacadeException(pe);
 		}
 	}
-	
+
 	/**
-	 * Chama o método do controladorEstoque para obter o valor total em produtos no estoque.
+	 * Chama o mÈtodo do controladorEstoque para obter o valor total em produtos no estoque.
 	 * 
 	 * @return Valor total do estoque.
-	 * @throws FacadeException Exceção lançada se ocorreu algum erro no controlador
+	 * @throws FacadeException ExceÁ„o lanÁada se ocorreu algum erro no controlador
 	 */
 	public float getValorTotalEmEstoque() throws FacadeException {
 		try {
@@ -142,14 +142,14 @@ public class ControleEstoqueFacade {
 			throw new FacadeException(pe);
 		}
 	}
-	
+
 	/**
-	 * Chama o método do controladorEstoque que retorna o valor total no estoque de um determinado
-	 * produto. É o resultado da multiplicação do seu valor pela sua quantidade disponível.
+	 * Chama o mÈtodo do controladorEstoque que retorna o valor total no estoque de um determinado
+	 * produto. … o resultado da multiplicaÁ„o do seu valor pela sua quantidade disponÌvel.
 	 * 
-	 * @param codigo Código do produto.
+	 * @param codigo CÛdigo do produto.
 	 * @return O valor total em estoque do produto.
-	 * @throws FacadeException Exceção lançada se ocorreu algum erro no controlador.
+	 * @throws FacadeException ExceÁ„o lanÁada se ocorreu algum erro no controlador.
 	 */
 	public float getValorTotalProduto(int codigo) throws FacadeException {
 		try {
