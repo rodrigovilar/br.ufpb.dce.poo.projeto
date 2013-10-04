@@ -1,4 +1,4 @@
-package model;
+package br.ufpb.dce.poo.controleestoque.model;
 
 /**
  * Classe concreta para representar o Produto.
