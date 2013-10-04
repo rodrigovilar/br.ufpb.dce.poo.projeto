@@ -1,4 +1,4 @@
-package br.ufpb.dce.poo.controleestoque.model;
+package model;
 
 /**
  * Classe concreta para representar o Produto.
@@ -7,6 +7,7 @@ package br.ufpb.dce.poo.controleestoque.model;
  * 
  */
 public class Produto {
+
 	/** Propriedade codigo. */
 	private int codigo;
 
@@ -136,5 +137,27 @@ public class Produto {
 				+ "\n" + "Descricao: " + descricao + "\n" + "Quantidade: "
 				+ quantidade + "\n" + "Valor: R$ " + valor + "\n"
 				+ "--------------------------------";
+	}
+	
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (codigo != other.codigo)
+			return false;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		if (quantidade != other.quantidade)
+			return false;
+		if (Float.floatToIntBits(valor) != Float.floatToIntBits(other.valor))
+			return false;
+		return true;
 	}
 }
