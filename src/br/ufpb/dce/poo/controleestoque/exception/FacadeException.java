@@ -1,8 +1,8 @@
-package br.ufpb.dce.poo.controleestoque.exception;
+package exception;
 
 /**
- * Exceção lançada quando ocorre algum erro na fachada do sistema.
- * Só ocorre quando o gerenciador de produtos lança a exceção
+ * ExceÁ„o lanÁada quando ocorre algum erro na fachada do sistema.
+ * SÛ ocorre quando o gerenciador de produtos lanÁa a exceÁ„o
  * ProdutoException.
  * 
  * @author Nayanne Soares
@@ -11,10 +11,10 @@ package br.ufpb.dce.poo.controleestoque.exception;
 public class FacadeException extends Exception {
   /**
    * Construtor da FacadeException, que recebe uma excecao por
-   * parâmetro, que foi a exceção lançada pelo Gerenciador antes
+   * par‚metro, que foi a exceÁ„o lanÁada pelo Gerenciador antes
    * de chegar na fachada.
    * 
-   * @param e Exceção que ocorreu no Gerenciador de Produtos.
+   * @param e ExceÁ„o que ocorreu no Gerenciador de Produtos.
    */
   public FacadeException(Exception e) {
 		super(e);
