@@ -3,8 +3,8 @@ package br.ufpb.dce.poo.controleestoque.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import exception.ProdutoException;
-import model.Produto;
+import br.ufpb.dce.poo.controleestoque.exception.ProdutoException;
+import br.ufpb.dce.poo.controleestoque.model.Produto;
 
 /**
  * Esta classe È respons·vel por gerenciar os produtos do estoque. Suas
