@@ -2,14 +2,14 @@ package br.ufpb.dce.poo.controleestoque.tests;
 
 import java.util.List;
 
-import model.Produto;
+import br.ufpb.dce.poo.controleestoque.model.Produto;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.FacadeException;
-import facade.ControleEstoqueFacade;
+import br.ufpb.dce.poo.controleestoque.exception.FacadeException;
+import br.ufpb.dce.poo.controleestoque.facade.ControleEstoqueFacade;
 
 public class ControleEstoqueTest {
 	
