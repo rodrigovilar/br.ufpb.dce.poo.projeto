@@ -2,10 +2,10 @@ package br.ufpb.dce.poo.controleestoque.facade;
 
 import java.util.List;
 
-import controller.ControladorEstoque;
-import exception.FacadeException;
-import exception.ProdutoException;
-import model.Produto;
+import br.ufpb.dce.poo.controleestoque.controller.ControladorEstoque;
+import br.ufpb.dce.poo.controleestoque.exception.FacadeException;
+import br.ufpb.dce.poo.controleestoque.exception.ProdutoException;
+import br.ufpb.dce.poo.controleestoque.model.Produto;
 
 /**
  * Fachada do Sistema.
